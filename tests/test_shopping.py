@@ -5,6 +5,9 @@ import re
 
 def test_shopping(driver):
     product = 'samsung galaxy s22'
+    amazon_price = 0.0
+    bestbuy_price = 0.0
+
     driver.get("https://www.amazon.com")
 
     search_form_input = driver.find_element(By.XPATH,  "//input[@name='field-keywords']")
