@@ -9,8 +9,7 @@ def test_shopping(driver):
 
     search_form_input = driver.find_element(By.XPATH,  "//input[@name='field-keywords']")
     search_form_input.send_keys(product)
-    search_button = driver.find_element(By.XPATH, "//input[@id='nav-search-submit-button']")
-    search_button.click()
+    search_form_input.send_keys(Keys.RETURN)
 
     search_results = driver.page_source
     soup = BeautifulSoup(search_results, 'html.parser')
@@ -20,7 +19,7 @@ def test_shopping(driver):
     max_reviews = 0
     for prodct in all_products:
         reviews = prodct.find('span', {'class': 'a-size-base s-underline-text'})
-        if reviews is not None:#
+        if reviews is not None:
             count_number = re.sub('[^0-9]','', reviews.text)
             if count_number.isdigit() and int(count_number) > max_reviews:
                 max_reviews = int(count_number)
